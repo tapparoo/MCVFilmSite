@@ -16,25 +16,16 @@
 
 	<div class="container">
 		<br>
-
-		<!--  Headers -->
-		<div class="row">
-			<div class="col-4">
-				<h3>Controls</h3>
-			</div>
-			<div class="col-8">
-				<h3>Film Data</h3>
-			</div>
-		</div>
 		<div class="row">
 
 			<!--  Form Controls -->
-			<div class="col-4 left">
+			<div class="col-sm-4 left">
+			<h3>Controls</h3>
 				<br>
 				<div class="row">
 					<div class="col-6">Search by:</div>
 				</div>
-				<div class="form-group form-inline row">
+				<div class="form-group row">
 					<div class="dropdown col-2">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
 							id="dropdownMenuButton" data-toggle="dropdown"
@@ -47,14 +38,14 @@
 					<input type="text" class="form-control col-4 offset-3"
 						id="searchBox">
 					<div class="col-1">
-						<input type="submit" class="btn btn-primary" value="GO">
+						<input type="submit" class="btn btn-primary btn-sm" value="GO">
 					</div>
 
 				</div>
 				<hr>
 
-				<!--  Add Film Dropdown/Form -->
-				<div class="dropdown col-2">
+				<!--  "Add Film" Dropdown/Form -->
+				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Add Film</button>
@@ -69,9 +60,9 @@
 									class="form-control" id="filmTitle">
 							</div>
 							<div class="form-group">
-							<label for="languageID" data-toggle="tooltip" data-html="true"
-								title="1 - English<br>2 - Italian<br>3 - Japanese<br>4 - Mandarin<br>5 - French<br>6 - German">Film ID: </label>
-								<input type="text" class="form-control" id="languageID">
+							<label class="hasToolTip" for="languageID" data-toggle="tooltip" data-html="true"
+								title="<div style='text-align:left'>1 - English<br>2 - Italian<br>3 - Japanese<br>4 - Mandarin<br>5 - French<br>6 - German</div>">Language ID: </label>
+								<input type="text" class="form-control col-4" id="languageID">
 							</div>
 							<button type="submit" class="btn btn-primary">Submit new film</button>
 						</form>
@@ -83,6 +74,7 @@
 
 			<!--  Film Details -->
 			<div class="col-sm-8 right">
+			<h3>Film Data</h3>
 				<form>
 					<br>
 					<div class="form-group form-inline row">
@@ -93,7 +85,7 @@
 							type="text" class="form-control form-control-sm col-4" id="title">
 					</div>
 					<div class="form-group form-inline row">
-						<label for="releaseDate" class="control-label col-3">Year</label>
+						<label class="control-label col-3">Year</label>
 						<input type="text" class="form-control form-control-sm col-1"
 							id="releaseDate"> <label for="categories"
 							class="control-label col-3 offset-1">Categories</label> <input
@@ -137,6 +129,8 @@
 						<label for="replacementCost" class="control-label col-3">Replacement
 							Cost</label> <input type="text"
 							class="form-control form-control-sm col-1" id="replacementCost">
+							<input type="button" class="btn btn-primary col-sm-3 offset-sm-0 col-md-2 offset-md-4" value="Save Changes">
+							<input type="button" class="btn btn-danger col-sm-3 offset-sm-0 col-md-2" value="Delete Film">
 					</div>
 				</form>
 			</div>
