@@ -1,0 +1,20 @@
+.control-label {
+	justify-content: flex-end !important
+}
+
+.left, .right{
+	border: thin black solid;
+}
+
+.left {
+	margin-left: -5px;
+}
+
+.right{
+	margin-left: 5px;
+	padding-right:35px;
+}
+
+h3 {
+	text-align:center;
+}

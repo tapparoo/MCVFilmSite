@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,89 +9,137 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-<style>
-.control-label {
-	justify-content: flex-end !important
-}
-</style>
+<link rel="stylesheet" href="css/style.css">
 <title>MVC Film Site</title>
 </head>
 <body>
 
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-7">
-				<form>
-					<div class="form-group form-inline row">
-						<label for="filmID" class="control-label col-4">Film ID</label> <input
-							type="text" class="form-control form-control-sm col-1"
-							id="filmID">
-					</div>
-					<div class="form-group form-inline row">
-						<label for="title" class="control-label col-4">Title</label> <input
-							type="text" class="form-control form-control-sm col-4" id="title">
+		<br>
 
+		<!--  Headers -->
+		<div class="row">
+			<div class="col-4">
+				<h3>Controls</h3>
+			</div>
+			<div class="col-8">
+				<h3>Film Data</h3>
+			</div>
+		</div>
+		<div class="row">
+
+			<!--  Form Controls -->
+			<div class="col-4 left">
+				<br>
+				<div class="row">
+					<div class="col-6">Search by:</div>
+				</div>
+				<div class="form-group form-inline row">
+					<div class="dropdown col-2">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">ID</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">ID</a> <a class="dropdown-item"
+								href="#">Keyword</a>
+						</div>
+					</div>
+					<input type="text" class="form-control col-4 offset-3"
+						id="searchBox">
+					<div class="col-1">
+						<input type="submit" class="btn btn-primary" value="GO">
+					</div>
+
+				</div>
+				<hr>
+
+				<!--  Add Film Dropdown/Form -->
+				<div class="dropdown col-2">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Add Film</button>
+					<div class="dropdown-menu">
+						<form class="px-4 py-3">
+							<div class="form-group">
+								<label for="filmID">Film ID (Optional)</label> <input
+									type="text" class="form-control" id="filmID">
+							</div>
+							<div class="form-group">
+								<label for="filmTitle">Title</label> <input type="text"
+									class="form-control" id="filmTitle">
+							</div>
+							<div class="form-group">
+							<label for="languageID" data-toggle="tooltip" data-html="true"
+								title="1 - English<br>2 - Italian<br>3 - Japanese<br>4 - Mandarin<br>5 - French<br>6 - German">Film ID: </label>
+								<input type="text" class="form-control" id="languageID">
+							</div>
+							<button type="submit" class="btn btn-primary">Submit new film</button>
+						</form>
+					</div>
+				</div>
+				<hr>
+
+			</div>
+
+			<!--  Film Details -->
+			<div class="col-sm-8 right">
+				<form>
+					<br>
+					<div class="form-group form-inline row">
+						<label for="filmID" class="control-label col-3">Film ID</label> <input
+							type="text" class="form-control form-control-sm col-1"
+							id="filmID"> <label for="title"
+							class="control-label col-3 offset-1">Title</label> <input
+							type="text" class="form-control form-control-sm col-4" id="title">
 					</div>
 					<div class="form-group form-inline row">
-						<label for="releaseDate" class="control-label col-4">Year</label>
+						<label for="releaseDate" class="control-label col-3">Year</label>
 						<input type="text" class="form-control form-control-sm col-1"
-							id="releaseDate">
+							id="releaseDate"> <label for="categories"
+							class="control-label col-3 offset-1">Categories</label> <input
+							type="text" class="form-control form-control-sm col-4"
+							id="categories">
 					</div>
 					<div class="form-group form-inline row">
-						<label for="rating" class="control-label col-4">Rating</label> <input
+						<label for="rating" class="control-label col-3">Rating</label> <input
 							type="text" class="form-control form-control-sm col-1"
-							id="rating">
+							id="rating"> <label for="features"
+							class="control-label col-3 offset-1">Special Features</label>
+						<textarea class="form-control form-control-sm col-4" id="features"></textarea>
 					</div>
 					<div class="form-group form-inline row">
-						<label for="language" class="control-label col-4">Language</label>
+						<label for="language" class="control-label col-3">Language</label>
 						<input type="text" class="form-control form-control-sm col-2"
-							id="language">
+							id="language"><label for="description"
+							class="control-label col-3">Description</label>
+						<textarea class="form-control form-control-sm col-4"
+							id="description"></textarea>
 					</div>
 					<div class="form-group form-inline row">
-						<label for="length" class="control-label col-4">Length</label> <input
+						<label for="length" class="control-label col-3">Length</label> <input
 							type="text" class="form-control form-control-sm col-1"
-							id="length">
+							id="length"><label for="cast"
+							class="control-label col-3 offset-1">Cast</label>
+						<textarea class="form-control form-control-sm col-4" id="cast"></textarea>
 					</div>
 					<div class="form-group form-inline row">
-						<label for="rentalDuration" class="control-label col-4">Rental
+						<label for="rentalDuration" class="control-label col-3">Rental
 							Duration</label> <input type="text"
 							class="form-control form-control-sm col-1" id="rentalDuration">
 						<div class="col-4"></div>
 					</div>
 					<div class="form-group form-inline row">
-						<label for="rentalRate" class="control-label col-4">Rental
+						<label for="rentalRate" class="control-label col-3">Rental
 							Rate</label> <input type="text"
 							class="form-control form-control-sm col-1" id="rentalRate">
 					</div>
 					<div class="form-group form-inline row">
-						<label for="replacementCost" class="control-label col-4">Replacement
+						<label for="replacementCost" class="control-label col-3">Replacement
 							Cost</label> <input type="text"
 							class="form-control form-control-sm col-1" id="replacementCost">
 					</div>
-					<div class="form-group form-inline row">
-						<label for="categories" class="control-label col-4">Categories</label>
-						<input type="text" class="form-control form-control-sm col-4"
-							id="categories">
-					</div>
-					<div class="form-group form-inline row">
-						<label for="features" class="control-label col-4">Special
-							Features</label>
-						<textarea class="form-control form-control-sm col-4" id="features"></textarea>
-					</div>
-					<div class="form-group form-inline row">
-						<label for="description" class="control-label col-4">Description</label>
-						<textarea class="form-control form-control-sm col-4"
-							id="description"></textarea>
-					</div>
-					<div class="form-group form-inline row">
-						<label for="cast" class="control-label col-4">Cast</label>
-						<textarea class="form-control form-control-sm col-4" id="cast"></textarea>
-					</div>
-
 				</form>
 			</div>
-			<div class="col-4">Multiple Films from keyword search will be
-				displayed here</div>
 		</div>
 	</div>
 
@@ -109,5 +155,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
+	<script src="scripts/script.js"></script>
 </body>
 </html>
