@@ -170,15 +170,16 @@
 								value="Save Changes">
 						</div>
 						<div class="col-sm-3 col-md-2">
-							<button type="submit" class="btn btn-danger" formmethod="POST" formaction="DeleteFilmById.do">Delete
-								Film</button>
+							<button type="submit" class="btn btn-danger" formmethod="POST"
+								formaction="DeleteFilmById.do">Delete Film</button>
 						</div>
 					</div>
-					<c:if test="not empty result">
-						<div class='row'>
+					<div class='row float-right'>
+						<p
+							style="color: red; font-weight: bold;">
 							<c:out value="${result}" />
-						</div>
-					</c:if>
+						</p>
+					</div>
 				</form>
 			</div>
 		</div>

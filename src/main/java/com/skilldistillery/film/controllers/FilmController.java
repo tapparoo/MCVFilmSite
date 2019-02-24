@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,14 @@ public class FilmController {
 	@Autowired
 	private DatabaseAccessor filmDAO;
 
+	@RequestMapping(path = "FilmModified.do")
+    public ModelAndView filmModified(@ModelAttribute("result") final String result) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/WEB-INF/filmPage.jsp");
+		mv.addObject("result", result);
+		return mv;
+    }
+	
 	@RequestMapping(path = "GetFilmById.do", method = RequestMethod.GET)
 	public ModelAndView getFilmById(@RequestParam("filmId") int filmId) {
 		ModelAndView mv = new ModelAndView();
@@ -67,7 +76,7 @@ public class FilmController {
 //		mv.setViewName("/WEB-INF/filmPage.jsp");
 		redir.addFlashAttribute("result", result);
 		redir.addFlashAttribute("filmId", filmId);
-	    return "redirect:/";
+	    return "redirect:FilmModified.do";
 	}
 
 	@RequestMapping(path = "ModifyFilm.do", params = { "filmId", "title", "description", "releaseYear", "languageId",
