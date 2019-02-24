@@ -79,6 +79,16 @@ public class Film {
 		return category;
 	}
 	
+	
+	
+	public List<Actor> getActorList() {
+		return actorList;
+	}
+
+	public void setActorList(List<Actor> actorList) {
+		this.actorList = actorList;
+	}
+
 	public int getId() {
 		return id;
 	}

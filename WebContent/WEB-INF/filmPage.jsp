@@ -35,19 +35,22 @@
 					<div class="dropdown-menu">
 						<form action="GetFilmById.do" method="GET" class="px-4 py-3">
 							<div class="input-group row">
-								<input id="filmID" class="col-2" name="searchRadio" type="radio"
-									aria-label="Radio button for following text input"> <label
-									for="filmID" class="label-align-left">Search by ID</label>
+								<label for="filmID" class="label-align-left col-12">Search
+									by ID</label> <input name="filmId" type="text"
+									class="form-control col-6"
+									aria-label="Text input with radio button"> <br>
+								<button type="submit" class="btn btn-primary col-6">Search</button>
 							</div>
+						</form>
+						<form action="GetFilmByKeyword.do" method="GET" class="px-4 py-3">
+
 							<div class="input-group row">
-								<input id="keyword" class="col-2" name="searchRadio"
-									type="radio" aria-label="Radio button for following text input"><label
-									for="keyword" class="label-align-left">Search by
-									Keyword</label>
+								<label for="keyword" class="label-align-left col-12">Search
+									by Keyword</label> <input name="keyword" type="text"
+									class="form-control col-6"
+									aria-label="Text input with radio button"> <br>
+								<button type="submit" class="btn btn-primary col-6">Search</button>
 							</div>
-							<input id="searchBox" type="text" class="form-control"
-								aria-label="Text input with radio button"> <br>
-							<button id="searchSubmitButton" type="submit" class="btn btn-primary">Search</button>
 
 						</form>
 					</div>
@@ -85,6 +88,18 @@
 				<hr>
 				<!--  List of films returned by keyword search can go right here.  
 					  Clicking on one will populate the form fields to the right -->
+				<div>
+					<ul class="list-group">
+						<c:forEach var="film" items="${filmList}">
+							<li class='list-group-item'>
+								<ul>
+									<li>ID: <c:out value="${ film.id}"/></li>
+									<li>Title: <c:out value="${ film.title}"/></li>
+									<li>Description: <c:out value="${ film.description}"/></li>
+								</ul>
+						</c:forEach>
+					</ul>
+				</div>
 			</div>
 
 			<!--  Film Details -->
@@ -95,38 +110,41 @@
 					<div class="form-group form-inline row">
 						<label for="filmID" class="control-label col-3">Film ID</label> <input
 							type="text" class="form-control form-control-sm col-1"
-							id="filmID"> <label for="title"
+							id="filmID" value="${film.id }"> <label for="title"
 							class="control-label col-3 offset-1">Title</label> <input
-							type="text" class="form-control form-control-sm col-4" id="title">
+							type="text" class="form-control form-control-sm col-4" id="title"
+							value="${film.title }">
 					</div>
 					<div class="form-group form-inline row">
 						<label class="control-label col-3">Year</label> <input type="text"
-							class="form-control form-control-sm col-1" id="releaseDate">
-						<label for="categories" class="control-label col-3 offset-1">Categories</label>
-						<input type="text" class="form-control form-control-sm col-4"
-							id="categories">
+							class="form-control form-control-sm col-1" id="releaseDate"
+							value="${film.releaseYear }"> <label for="categories"
+							class="control-label col-3 offset-1">Category</label> <input
+							type="text" class="form-control form-control-sm col-4"
+							id="categories" value="${film.category }">
 					</div>
 					<div class="form-group form-inline row">
 						<label for="rating" class="control-label col-3">Rating</label> <input
 							type="text" class="form-control form-control-sm col-1"
-							id="rating"> <label for="features"
-							class="control-label col-3 offset-1">Special Features</label>
+							id="rating" value="${film.rating }"> <label
+							for="features" class="control-label col-3 offset-1">Special
+							Features</label>
 						<textarea class="form-control form-control-sm col-4" id="features"></textarea>
 					</div>
 					<div class="form-group form-inline row">
 						<label for="language" class="control-label col-3">Language</label>
 						<input type="text" class="form-control form-control-sm col-2"
-							id="language"><label for="description"
-							class="control-label col-3">Description</label>
+							id="language" value="${film.language }"><label
+							for="description" class="control-label col-3">Description</label>
 						<textarea class="form-control form-control-sm col-4"
-							id="description"></textarea>
+							id="description">${film.description }</textarea>
 					</div>
 					<div class="form-group form-inline row">
 						<label for="length" class="control-label col-3">Length</label> <input
 							type="text" class="form-control form-control-sm col-1"
-							id="length"><label for="cast"
+							id="length" value="${film.length }"><label for="cast"
 							class="control-label col-3 offset-1">Cast</label>
-						<textarea class="form-control form-control-sm col-4" id="cast"></textarea>
+						<textarea class="form-control form-control-sm col-4" id="cast">${film.actorList }</textarea>
 					</div>
 					<div class="form-group form-inline row">
 						<label for="rentalDuration" class="control-label col-3">Rental

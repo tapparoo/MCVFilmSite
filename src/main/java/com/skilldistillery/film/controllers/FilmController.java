@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.database.DatabaseAccessor;
@@ -20,7 +21,7 @@ public class FilmController {
 	private DatabaseAccessor filmDAO;
 
 	@RequestMapping(path = "GetFilmById.do", params = "filmId", method = RequestMethod.GET)
-	public ModelAndView getFilmById(int filmId) {
+	public ModelAndView getFilmById(@RequestParam("filmId") int filmId) {
 		ModelAndView mv = new ModelAndView();
 		Film film = null;
 		String result = null;
@@ -31,7 +32,7 @@ public class FilmController {
 		}
 		mv.addObject("film", film);
 		mv.addObject("result", result);
-		mv.setViewName("filmPage.jsp");
+		mv.setViewName("/WEB-INF/filmPage.jsp");
 		return mv;
 	}
 	
@@ -47,7 +48,7 @@ public class FilmController {
 		}
 		mv.addObject("filmList", filmList);
 		mv.addObject("result", result);
-		mv.setViewName("filmPage");
+		mv.setViewName("/WEB-INF/filmPage.jsp");
 		return mv;
 	}
 	
@@ -62,7 +63,7 @@ public class FilmController {
 			result = "Error deleting film";
 		}
 		mv.addObject("result", result);
-		mv.setViewName("filmPage");
+		mv.setViewName("/WEB-INF/filmPage.jsp");
 		return mv;
 	}
 	@RequestMapping(path = "ModifyFilm.do", params = {"filmId", "title", "description", "releaseYear", "languageId", "length", "rating"}, method = RequestMethod.POST)
@@ -80,7 +81,7 @@ public class FilmController {
 		}
 		mv.addObject("newFilm", newFilm);
 		mv.addObject("result", result);
-		mv.setViewName("filmPage");
+		mv.setViewName("/WEB-INF/filmPage.jsp");
 		return mv;
 	}
 }
