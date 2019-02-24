@@ -11,7 +11,14 @@ war {
   archiveName = "${baseName}.war"
   destinationDir = file("./")      // Project root
 }
-
+sourceSets {
+  main {
+    java.srcDirs 'src/main/java'
+  }
+  test {
+    java.srcDirs 'src/test/java'
+  }
+}
 project.webAppDirName = 'WebContent'
 
 repositories {

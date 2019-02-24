@@ -6,7 +6,7 @@
 	
 	<display-name>MVCFilmSite</display-name>
 	<welcome-file-list>
-		<welcome-file>films.do</welcome-file>
+		<welcome-file>/WEB-INF/filmPage.jsp</welcome-file>
 	</welcome-file-list>
 
 	<context-param>

@@ -73,12 +73,12 @@ public class FilmController {
 		mv.setViewName("filmPage");
 		return mv;
 	}
-	@RequestMapping(path = "ModifyFilm.do", params = {"filmId", "title", "description", "releaseYear", "languageId", "length", "rating"}, method = RequestMethod.POST)
-	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId, int length, String rating) {
-//TODO: write a bunch of code here
-		mv.addObject("newFilm", newFilm);
-		mv.addObject("result", result);
-		mv.setViewName("filmPage");
-		return mv;
-	}
+//	@RequestMapping(path = "ModifyFilm.do", params = {"filmId", "title", "description", "releaseYear", "languageId", "length", "rating"}, method = RequestMethod.POST)
+//	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId, int length, String rating) {
+////TODO: write a bunch of code here
+//		mv.addObject("newFilm", newFilm);
+//		mv.addObject("result", result);
+//		mv.setViewName("filmPage");
+//		return mv;
+//	}
 }

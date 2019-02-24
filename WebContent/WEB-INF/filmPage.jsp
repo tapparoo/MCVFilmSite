@@ -33,7 +33,7 @@
 						id="search" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Search</button>
 					<div class="dropdown-menu">
-						<form class="px-4 py-3">
+						<form action="GetFilmById.do" method="GET" class="px-4 py-3">
 							<div class="input-group row">
 								<input id="filmID" class="col-2" name="searchRadio" type="radio"
 									aria-label="Radio button for following text input"> <label
