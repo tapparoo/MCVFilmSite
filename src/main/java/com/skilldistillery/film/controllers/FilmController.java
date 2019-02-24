@@ -19,10 +19,6 @@ public class FilmController {
 	@Autowired
 	private DatabaseAccessor filmDAO;
 
-//	public void setFilmDAO(DatabaseAccessor filmDAO) {
-//		this.filmDAO = filmDAO;
-//	}
-
 	@RequestMapping(path = "GetFilmById.do", params = "filmId", method = RequestMethod.GET)
 	public ModelAndView getFilmById(int filmId) {
 		ModelAndView mv = new ModelAndView();
@@ -42,9 +38,8 @@ public class FilmController {
 	@RequestMapping(path = "GetFilmByKeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();
-		Film film = null;
 		String result = null;
-		List<Film> filmList = new ArrayList();
+		List<Film> filmList = new ArrayList<Film>();
 		try {
 			filmList = filmDAO.findFilmByKeyword(keyword);
 		} catch (SQLException e) {
@@ -59,26 +54,33 @@ public class FilmController {
 	@RequestMapping(path = "DeleteFilmById.do", params = "filmId", method = RequestMethod.POST)
 	public ModelAndView deleteFilmById(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		Film film = null;
 		String result = null;
 		try {
 			Film filmToDelete = filmDAO.findFilmById(filmId);
-			filmDAO.deleteFilm(filmToDelete);
-			result = "Film successfully deleted!";
+			result = filmDAO.deleteFilm(filmToDelete);
 		} catch (SQLException e) {
-			// TODO handle this better
-			e.printStackTrace();
+			result = "Error deleting film";
 		}
 		mv.addObject("result", result);
 		mv.setViewName("filmPage");
 		return mv;
 	}
-//	@RequestMapping(path = "ModifyFilm.do", params = {"filmId", "title", "description", "releaseYear", "languageId", "length", "rating"}, method = RequestMethod.POST)
-//	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId, int length, String rating) {
-////TODO: write a bunch of code here
-//		mv.addObject("newFilm", newFilm);
-//		mv.addObject("result", result);
-//		mv.setViewName("filmPage");
-//		return mv;
-//	}
+	@RequestMapping(path = "ModifyFilm.do", params = {"filmId", "title", "description", "releaseYear", "languageId", "length", "rating"}, method = RequestMethod.POST)
+	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId, int length, String rating) {
+		ModelAndView mv = new ModelAndView();
+		String result = null;
+		Film newFilm = null;
+		try {
+		newFilm = new Film(0, title, description, releaseYear, languageId, length, rating);
+		Film oldFilm = filmDAO.findFilmById(filmId);
+		result = filmDAO.modifyFilm(oldFilm, newFilm);
+		}
+		catch(Exception e) {
+			result = "Error trying to modify film";
+		}
+		mv.addObject("newFilm", newFilm);
+		mv.addObject("result", result);
+		mv.setViewName("filmPage");
+		return mv;
+	}
 }

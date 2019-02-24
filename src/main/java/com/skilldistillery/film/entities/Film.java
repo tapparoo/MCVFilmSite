@@ -2,13 +2,12 @@ package com.skilldistillery.film.entities;
 
 import java.sql.SQLException;
 import java.util.List;
-import com.skilldistillery.film.database.DatabaseAccessor;
 import com.skilldistillery.film.database.FilmDAO;
 
 
 public class Film {
 	private int id, releaseYear, languageId, length;
-	private String title, description, rating, category;
+	private String title, description, rating;
 	private List<Actor> actorList;
 
 	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating) {
@@ -34,8 +33,6 @@ public class Film {
 	}
 
 	public String toString() {
-		DatabaseAccessor dao = new FilmDAO();
-		String language = null;
 		StringBuilder filmInfo = new StringBuilder();
 		filmInfo.append("ID: " + this.id);
 		filmInfo.append("\nTitle: " + this.title);

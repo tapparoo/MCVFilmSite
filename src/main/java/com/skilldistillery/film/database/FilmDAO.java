@@ -86,7 +86,6 @@ public class FilmDAO implements DatabaseAccessor {
 		stmt.setInt(1, filmId);
 		ResultSet rs = stmt.executeQuery();
 		List<Actor> actorList = new ArrayList<>();
-//		int id = 0;
 		String firstName = null, lastName = null;
 		while (rs.next()) {
 			firstName = rs.getString("first_name");
@@ -186,8 +185,7 @@ public class FilmDAO implements DatabaseAccessor {
 			st.setInt(4, film.getLanguageId());
 			st.setInt(5, film.getLength());
 			st.setString(6, film.getRating());
-			int uc = st.executeUpdate();
-			// Now get the auto-generated film ID:
+			st.executeUpdate();
 			ResultSet keys = st.getGeneratedKeys();
 			while (keys.next()) {
 				key = keys.getInt(1);
@@ -226,8 +224,8 @@ public class FilmDAO implements DatabaseAccessor {
 			return result;
 		} finally {
 			conn.commit();
-			return result;
 		}
+		return result;
 
 	}
 
