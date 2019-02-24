@@ -6,12 +6,7 @@
 	border: thin black solid;
 }
 
-.left {
-	margin-right: -5px;
-}
-
 .right{
-	margin-left: 5px;
 	padding-right:35px;
 }
 
@@ -24,6 +19,7 @@ h3 {
 	color: blue;
 }
 
-#languageID {
+.label-align-left, #languageID {
 	text-align:left;
 }
+

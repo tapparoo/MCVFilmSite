@@ -20,28 +20,33 @@
 
 			<!--  Form Controls -->
 			<div class="col-sm-4 left">
-			<h3>Controls</h3>
+				<h3>Controls</h3>
 				<br>
-				<div class="row">
-					<div class="col-6">Search by:</div>
-				</div>
-				<div class="form-group row">
-					<div class="dropdown col-2">
-						<button class="btn btn-secondary dropdown-toggle" type="button"
-							id="dropdownMenuButton" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">ID</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" href="#">ID</a> <a class="dropdown-item"
-								href="#">Keyword</a>
-						</div>
-					</div>
-					<input type="text" class="form-control col-4 offset-3"
-						id="searchBox">
-					<div class="col-1">
-						<input type="submit" class="btn btn-primary btn-sm" value="GO">
-					</div>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="search" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Search</button>
+					<div class="dropdown-menu">
+						<form class="px-4 py-3">
+							<div class="input-group row">
+								<input id="filmID" class="col-2" name="searchRadio" type="radio"
+									aria-label="Radio button for following text input"> <label
+									for="filmID" class="label-align-left">Search by ID</label>
+							</div>
+							<div class="input-group row">
+								<input id="keyword" class="col-2" name="searchRadio"
+									type="radio" aria-label="Radio button for following text input"><label
+									for="keyword" class="label-align-left">Search by
+									Keyword</label>
+							</div>
+							<input id="searchBox" type="text" class="form-control"
+								aria-label="Text input with radio button"> <br>
+							<button id="searchSubmitButton" type="submit" class="btn btn-primary">Search</button>
 
+						</form>
+					</div>
 				</div>
+
 				<hr>
 
 				<!--  "Add Film" Dropdown/Form -->
@@ -60,21 +65,25 @@
 									class="form-control" id="filmTitle">
 							</div>
 							<div class="form-group">
-							<label class="hasToolTip" for="languageID" data-toggle="tooltip" data-html="true"
-								title="<div style='text-align:left'>1 - English<br>2 - Italian<br>3 - Japanese<br>4 - Mandarin<br>5 - French<br>6 - German</div>">Language ID: </label>
-								<input type="text" class="form-control col-4" id="languageID">
+								<label class="hasToolTip" for="languageID" data-toggle="tooltip"
+									data-html="true"
+									title="<div style='text-align:left'>1 - English<br>2 - Italian<br>3 - Japanese<br>4 - Mandarin<br>5 - French<br>6 - German</div>">Language
+									ID: </label> <input type="text" class="form-control col-4"
+									id="languageID">
 							</div>
-							<button type="submit" class="btn btn-primary">Submit new film</button>
+							<button type="submit" class="btn btn-primary">Submit new
+								film</button>
 						</form>
 					</div>
 				</div>
 				<hr>
-
+				<!--  List of films returned by keyword search can go right here.  
+					  Clicking on one will populate the form fields to the right -->
 			</div>
 
 			<!--  Film Details -->
 			<div class="col-sm-8 right">
-			<h3>Film Data</h3>
+				<h3>Film Data</h3>
 				<form>
 					<br>
 					<div class="form-group form-inline row">
@@ -85,11 +94,10 @@
 							type="text" class="form-control form-control-sm col-4" id="title">
 					</div>
 					<div class="form-group form-inline row">
-						<label class="control-label col-3">Year</label>
-						<input type="text" class="form-control form-control-sm col-1"
-							id="releaseDate"> <label for="categories"
-							class="control-label col-3 offset-1">Categories</label> <input
-							type="text" class="form-control form-control-sm col-4"
+						<label class="control-label col-3">Year</label> <input type="text"
+							class="form-control form-control-sm col-1" id="releaseDate">
+						<label for="categories" class="control-label col-3 offset-1">Categories</label>
+						<input type="text" class="form-control form-control-sm col-4"
 							id="categories">
 					</div>
 					<div class="form-group form-inline row">
@@ -129,8 +137,12 @@
 						<label for="replacementCost" class="control-label col-3">Replacement
 							Cost</label> <input type="text"
 							class="form-control form-control-sm col-1" id="replacementCost">
-							<input type="button" class="btn btn-primary col-sm-3 offset-sm-0 col-md-2 offset-md-4" value="Save Changes">
-							<input type="button" class="btn btn-danger col-sm-3 offset-sm-0 col-md-2" value="Delete Film">
+						<!--  Save/Delete buttons-->
+						<input type="button"
+							class="btn btn-primary col-sm-3 offset-sm-0 col-md-2 offset-md-4"
+							value="Save Changes"> <input type="button"
+							class="btn btn-danger col-sm-3 offset-sm-0 col-md-2"
+							value="Delete Film">
 					</div>
 				</form>
 			</div>
