@@ -35,7 +35,7 @@ public class FilmController {
 		mv.setViewName("/WEB-INF/filmPage.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "GetFilmByKeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();
@@ -51,7 +51,7 @@ public class FilmController {
 		mv.setViewName("/WEB-INF/filmPage.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "DeleteFilmById.do", params = "filmId", method = RequestMethod.POST)
 	public ModelAndView deleteFilmById(int filmId) {
 		ModelAndView mv = new ModelAndView();
@@ -66,17 +66,19 @@ public class FilmController {
 		mv.setViewName("/WEB-INF/filmPage.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "ModifyFilm.do", params = {"filmId", "title", "description", "releaseYear", "languageId", "length", "rating"}, method = RequestMethod.POST)
-	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId, int length, String rating) {
+
+	@RequestMapping(path = "ModifyFilm.do", params = { "filmId", "title", "description", "releaseYear", "languageId",
+			"length", "rating" }, method = RequestMethod.POST)
+	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId,
+			int length, String rating) {
 		ModelAndView mv = new ModelAndView();
 		String result = null;
 		Film newFilm = null;
 		try {
-		newFilm = new Film(0, title, description, releaseYear, languageId, length, rating);
-		Film oldFilm = filmDAO.findFilmById(filmId);
-		result = filmDAO.modifyFilm(oldFilm, newFilm);
-		}
-		catch(Exception e) {
+			newFilm = new Film(0, title, description, releaseYear, languageId, length, rating);
+			Film oldFilm = filmDAO.findFilmById(filmId);
+			result = filmDAO.modifyFilm(oldFilm, newFilm);
+		} catch (Exception e) {
 			result = "Error trying to modify film";
 		}
 		mv.addObject("newFilm", newFilm);

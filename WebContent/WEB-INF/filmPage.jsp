@@ -26,36 +26,40 @@
 			<!--  Form Controls -->
 			<div class="col-sm-4 left">
 				<h3>Controls</h3>
-				<br>
-				<!--  Search Dropdown-->
-				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						id="search" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Search</button>
-					<div class="dropdown-menu">
-						<form action="GetFilmById.do" method="GET" class="px-4 py-3">
-							<div class="input-group row">
-								<label for="filmID" class="label-align-left col-12">Search
-									by ID</label> <input name="filmId" type="text"
-									class="form-control col-6"
-									aria-label="Text input with radio button"> <br>
-								<button type="submit" class="btn btn-primary col-6">Search</button>
-							</div>
-						</form>
-						<form action="GetFilmByKeyword.do" method="GET" class="px-4 py-3">
+				<hr>
+				<div class="row">
+					<!--  Search Dropdown-->
+					<div class="dropdown col-9">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="search" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">Search</button>
+						<div class="dropdown-menu">
+							<form action="GetFilmById.do" method="GET" class="px-4 py-3">
+								<div class="input-group row">
+									<label for="filmID" class="label-align-left col-12">Search
+										by ID</label> <input name="filmId" type="text"
+										class="form-control col-6"
+										aria-label="Text input with radio button"> <br>
+									<button type="submit" class="btn btn-primary col-6">Search</button>
+								</div>
+							</form>
 
-							<div class="input-group row">
-								<label for="keyword" class="label-align-left col-12">Search
-									by Keyword</label> <input name="keyword" type="text"
-									class="form-control col-6"
-									aria-label="Text input with radio button"> <br>
-								<button type="submit" class="btn btn-primary col-6">Search</button>
-							</div>
+							<form action="GetFilmByKeyword.do" method="GET" class="px-4 py-3">
+								<div class="input-group row">
+									<label for="keyword" class="label-align-left col-12">Search
+										by Keyword</label> <input name="keyword" type="text"
+										class="form-control col-6"
+										aria-label="Text input with radio button"> <br>
+									<button type="submit" class="btn btn-primary col-6">Search</button>
+								</div>
+							</form>
 
-						</form>
+						</div>
+					</div>
+					<div class="col-sm-auto">
+						<a href="/MVCFilmSite" class="btn btn-outline-secondary btn-sm">Reset</a>
 					</div>
 				</div>
-
 				<hr>
 
 				<!--  "Add Film" Dropdown/Form -->
@@ -91,12 +95,11 @@
 				<div>
 					<ul class="list-group">
 						<c:forEach var="film" items="${filmList}">
-							<li class='list-group-item'>
-								<ul>
-									<li>ID: <c:out value="${ film.id}"/></li>
-									<li>Title: <c:out value="${ film.title}"/></li>
-									<li>Description: <c:out value="${ film.description}"/></li>
-								</ul>
+							<li class='list-group-item'><a
+								href="<c:url value="GetFilmById.do?filmId=${film.id}"/>">ID:
+									<c:out value="${ film.id}" />
+							</a><br> Title: <c:out value="${ film.title}" /><br>
+								Description: <c:out value="${ film.description}" /><br>
 						</c:forEach>
 					</ul>
 				</div>
@@ -105,8 +108,8 @@
 			<!--  Film Details -->
 			<div class="col-sm-8 right">
 				<h3>Film Data</h3>
+				<hr>
 				<form>
-					<br>
 					<div class="form-group form-inline row">
 						<label for="filmID" class="control-label col-3">Film ID</label> <input
 							type="text" class="form-control form-control-sm col-1"
