@@ -19,9 +19,9 @@ public class FilmController {
 	@Autowired
 	private DatabaseAccessor filmDAO;
 
-	public void setFilmDAO(DatabaseAccessor filmDAO) {
-		this.filmDAO = filmDAO;
-	}
+//	public void setFilmDAO(DatabaseAccessor filmDAO) {
+//		this.filmDAO = filmDAO;
+//	}
 
 	@RequestMapping(path = "GetFilmById.do", params = "filmId", method = RequestMethod.GET)
 	public ModelAndView getFilmById(int filmId) {
@@ -35,7 +35,7 @@ public class FilmController {
 		}
 		mv.addObject("film", film);
 		mv.addObject("result", result);
-		mv.setViewName("filmPage");
+		mv.setViewName("filmPage.jsp");
 		return mv;
 	}
 	
