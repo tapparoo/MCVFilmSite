@@ -97,7 +97,7 @@ public class FilmDAO implements DatabaseAccessor {
 		return actorList;
 	}
 
-	public String getCategory(int filmId) throws SQLException {
+	public String getCategoryFromId(int filmId) throws SQLException {
 		String user = "student";
 		String pass = "student";
 		Connection conn = DriverManager.getConnection(URL, user, pass);
@@ -148,7 +148,7 @@ public class FilmDAO implements DatabaseAccessor {
 		return filmList;
 	}
 
-	public String getLanguage(int languageId) throws SQLException {
+	public String getLanguageFromId(int languageId) throws SQLException {
 		String user = "student";
 		String pass = "student";
 		Connection conn = DriverManager.getConnection(URL, user, pass);

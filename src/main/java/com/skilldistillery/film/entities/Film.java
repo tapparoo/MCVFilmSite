@@ -2,9 +2,9 @@ package com.skilldistillery.film.entities;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import com.skilldistillery.film.database.DatabaseAccessor;
 import com.skilldistillery.film.database.FilmDAO;
+
 
 public class Film {
 	private int id, releaseYear, languageId, length;
@@ -34,26 +34,25 @@ public class Film {
 	}
 
 	public String toString() {
-		FilmDAO dao = new FilmDAO();
+		DatabaseAccessor dao = new FilmDAO();
 		String language = null;
-		try {
-			language = dao.getLanguage(this.languageId);
-		} catch (SQLException e) {
-			language = "Error retrieving language";
-		}
-		try {
-			category = dao.getCategory(this.id);
-		}
-		catch (SQLException e) {
-			category = "Error retrieving category";
-		}
 		StringBuilder filmInfo = new StringBuilder();
 		filmInfo.append("ID: " + this.id);
 		filmInfo.append("\nTitle: " + this.title);
-		filmInfo.append("\nCategory: " + category);
+		try {
+		filmInfo.append("\nCategory: " + this.getCategory());
+		}
+		catch(Exception e) {
+			filmInfo.append("\nCategory: Error retrieving category");
+		}
 		filmInfo.append("\nDescription: " + this.description);
 		filmInfo.append("\nYear: " + this.releaseYear);
-		filmInfo.append("\nLanguage: " + language);
+		try{
+			filmInfo.append("\nLanguage: " + this.getLanguage());
+		}
+		catch(Exception e) {
+			filmInfo.append("\nLanguage: Error retrieving language");
+		}
 		filmInfo.append("\nLength: " + this.length + " minutes");
 		filmInfo.append("\nRating: " + this.rating);
 		int i = 0;
@@ -69,13 +68,20 @@ public class Film {
 			i++;
 		}
 		return filmInfo.toString();
-		
-//		return "ID: " + id + "\nTitle: " + title + "\nDescription: " + description + "\nYear: " + releaseYear
-//				+ "\nLanguage: " + language + "\nLength: " + length + " Minutes\nRating: " + rating + category +
-//				"\nCast: " + actorList + "\n";
-
 	}
 
+	public String getLanguage() throws SQLException {
+		FilmDAO dao = new FilmDAO();
+		String language = dao.getLanguageFromId(this.languageId);
+		return language;
+	}
+	
+	public String getCategory() throws SQLException {
+		FilmDAO dao = new FilmDAO();
+		String category = dao.getCategoryFromId(this.id);
+		return category;
+	}
+	
 	public int getId() {
 		return id;
 	}
