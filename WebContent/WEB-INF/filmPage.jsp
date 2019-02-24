@@ -109,11 +109,11 @@
 			<div class="col-sm-8 right">
 				<h3>Film Data</h3>
 				<hr>
-				<form>
+				<form action="ModifyFilm.do" method="POST">
 					<div class="form-group form-inline row">
 						<label for="filmID" class="control-label col-3">Film ID</label> <input
 							type="text" class="form-control form-control-sm col-1"
-							id="filmID" value="${film.id }"> <label for="title"
+							name="filmId" value="${film.id }"> <label for="title"
 							class="control-label col-3 offset-1">Title</label> <input
 							type="text" class="form-control form-control-sm col-4" id="title"
 							value="${film.title }">
@@ -165,12 +165,20 @@
 							Cost</label> <input type="text"
 							class="form-control form-control-sm col-1" id="replacementCost">
 						<!--  Save/Delete buttons-->
-						<input type="button"
-							class="btn btn-primary col-sm-3 offset-sm-0 col-md-2 offset-md-4"
-							value="Save Changes"> <input type="button"
-							class="btn btn-danger col-sm-3 offset-sm-0 col-md-2"
-							value="Delete Film">
+						<div class="col-sm-2 offset-sm-4 col-md-2 offset-md-4">
+							<input type="button" class="btn btn-primary "
+								value="Save Changes">
+						</div>
+						<div class="col-sm-3 col-md-2">
+							<button type="submit" class="btn btn-danger" formmethod="POST" formaction="DeleteFilmById.do">Delete
+								Film</button>
+						</div>
 					</div>
+					<c:if test="not empty result">
+						<div class='row'>
+							<c:out value="${result}" />
+						</div>
+					</c:if>
 				</form>
 			</div>
 		</div>
