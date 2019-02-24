@@ -23,13 +23,13 @@ public class FilmController {
 	private DatabaseAccessor filmDAO;
 
 	@RequestMapping(path = "FilmModified.do")
-    public ModelAndView filmModified(@ModelAttribute("result") final String result) {
+	public ModelAndView filmModified(@ModelAttribute("result") final String result) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/WEB-INF/filmPage.jsp");
 		mv.addObject("result", result);
 		return mv;
-    }
-	
+	}
+
 	@RequestMapping(path = "GetFilmById.do", method = RequestMethod.GET)
 	public ModelAndView getFilmById(@RequestParam("filmId") int filmId) {
 		ModelAndView mv = new ModelAndView();
@@ -76,7 +76,28 @@ public class FilmController {
 //		mv.setViewName("/WEB-INF/filmPage.jsp");
 		redir.addFlashAttribute("result", result);
 		redir.addFlashAttribute("filmId", filmId);
-	    return "redirect:FilmModified.do";
+		return "redirect:FilmModified.do";
+	}
+
+	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
+	public String modifyFilm(Film film, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		String result = null;
+		Film newFilm = null;
+		try {
+			newFilm = new Film(film.getId(), film.getTitle(), null, 0, film.getLanguageId(), 0, null);
+			int id = filmDAO.addFilm(newFilm);
+			if (film.getId() == 0) {
+				newFilm.setId(id);
+			}
+			result = "Successfully added film";
+		} catch (SQLException e) {
+			e.printStackTrace();
+			result = "Error trying to modify film";
+		}
+		redir.addFlashAttribute("result", result);
+		redir.addFlashAttribute("film", newFilm);
+		return "redirect:FilmModified.do";
 	}
 
 	@RequestMapping(path = "ModifyFilm.do", params = { "filmId", "title", "description", "releaseYear", "languageId",

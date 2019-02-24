@@ -171,8 +171,11 @@ public class FilmDAO implements DatabaseAccessor {
 		String url = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 		String user = "student";
 		String pword = "student";
-		String sql = "INSERT INTO film (title, description, release_year, language_id, length, rating)"
-				+ " values(?, ?, ?, ?, ?, ?)";
+		String sql;
+
+		sql = "INSERT INTO film (title, description, release_year, language_id, length, rating, id)"
+				+ " values(?, ?, ?, ?, ?, ?, ?)";
+
 		Connection conn = null;
 		int key = 0;
 		try {
@@ -185,6 +188,7 @@ public class FilmDAO implements DatabaseAccessor {
 			st.setInt(4, film.getLanguageId());
 			st.setInt(5, film.getLength());
 			st.setString(6, film.getRating());
+			st.setInt(7, film.getId());
 			st.executeUpdate();
 			ResultSet keys = st.getGeneratedKeys();
 			while (keys.next()) {

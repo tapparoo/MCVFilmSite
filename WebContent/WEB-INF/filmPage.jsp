@@ -15,9 +15,11 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css">
+
 <title>MVC Film Site</title>
 </head>
 <body>
+<div id="background"></div>
 
 	<div class="container">
 		<br>
@@ -68,21 +70,21 @@
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">Add Film</button>
 					<div class="dropdown-menu">
-						<form class="px-4 py-3">
+						<form action="AddFilm.do" method="POST" class="px-4 py-3">
 							<div class="form-group">
-								<label for="filmID">Film ID (Optional)</label> <input
-									type="text" class="form-control" id="filmID">
+								<label for="id">Film ID (Optional)</label> <input
+									type="text" class="form-control" name="id" value="0">
 							</div>
 							<div class="form-group">
-								<label for="filmTitle">Title</label> <input type="text"
-									class="form-control" id="filmTitle">
+								<label for="title">Title</label> <input type="text"
+									class="form-control" name="title">
 							</div>
 							<div class="form-group">
 								<label class="hasToolTip" for="languageID" data-toggle="tooltip"
 									data-html="true"
 									title="<div style='text-align:left'>1 - English<br>2 - Italian<br>3 - Japanese<br>4 - Mandarin<br>5 - French<br>6 - German</div>">Language
 									ID: </label> <input type="text" class="form-control col-4"
-									id="languageID">
+									name="languageId">
 							</div>
 							<button type="submit" class="btn btn-primary">Submit new
 								film</button>

@@ -10,6 +10,8 @@ public class Film {
 	private String title, description, rating;
 	private List<Actor> actorList;
 
+	public Film() {}
+	
 	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating) {
 		this.id = id;
 		this.title = title;
