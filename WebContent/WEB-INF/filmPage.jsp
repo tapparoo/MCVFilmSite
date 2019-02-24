@@ -72,10 +72,6 @@
 					<div class="dropdown-menu">
 						<form action="AddFilm.do" method="POST" class="px-4 py-3">
 							<div class="form-group">
-								<label for="id">Film ID (Optional)</label> <input
-									type="text" class="form-control" name="id" value="0">
-							</div>
-							<div class="form-group">
 								<label for="title">Title</label> <input type="text"
 									class="form-control" name="title">
 							</div>
@@ -84,7 +80,11 @@
 									data-html="true"
 									title="<div style='text-align:left'>1 - English<br>2 - Italian<br>3 - Japanese<br>4 - Mandarin<br>5 - French<br>6 - German</div>">Language
 									ID: </label> <input type="text" class="form-control col-4"
-									name="languageId">
+									name="languageId" value="1">
+							</div>
+							<div class="form-group">
+								<label for="id">Film ID (Optional)</label> <input
+									type="text" class="form-control col-4" name="id" value="0">
 							</div>
 							<button type="submit" class="btn btn-primary">Submit new
 								film</button>
@@ -115,7 +115,7 @@
 					<div class="form-group form-inline row">
 						<label for="filmID" class="control-label col-3">Film ID</label> <input
 							type="text" class="form-control form-control-sm col-1"
-							name="filmId" value="${film.id }"> <label for="title"
+							name="filmId" value="${film.id }" readonly="readonly"> <label for="title"
 							class="control-label col-3 offset-1">Title</label> <input
 							type="text" class="form-control form-control-sm col-4" id="title"
 							value="${film.title }">
