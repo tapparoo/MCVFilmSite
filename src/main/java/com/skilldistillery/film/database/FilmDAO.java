@@ -36,8 +36,8 @@ public class FilmDAO implements DatabaseAccessor {
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, filmId);
 		ResultSet rs = stmt.executeQuery();
-		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0, rentalRate = 0,
-				replacementCost = 0;
+		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0;
+		double rentalRate = 0, replacementCost = 0;
 		String title = null, description = null, rating = null;
 		Film film = null;
 		if (rs.next()) {
@@ -49,8 +49,8 @@ public class FilmDAO implements DatabaseAccessor {
 			length = rs.getInt("length");
 			rating = rs.getString("rating");
 			rentalDuration = rs.getInt("rental_duration");
-			rentalRate = rs.getInt("rental_rate");
-			replacementCost = rs.getInt("replacement_cost");
+			rentalRate = rs.getDouble("rental_rate");
+			replacementCost = rs.getDouble("replacement_cost");
 			List<Actor> actorList = this.findActorsByFilmId(filmId);
 			film = new Film(id, title, description, releaseYear, languageId, length, rating, actorList, rentalDuration,
 					rentalRate, replacementCost);
@@ -73,8 +73,8 @@ public class FilmDAO implements DatabaseAccessor {
 		ResultSet rs = stmt.executeQuery();
 		Film film = null;
 		List<Film> filmList = new ArrayList<>();
-		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0, rentalRate = 0,
-				replacementCost = 0;
+		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0;
+		double rentalRate = 0, replacementCost = 0;
 		String title = null, description = null, rating = null;
 		while (rs.next()) {
 			id = rs.getInt("id");
@@ -85,8 +85,8 @@ public class FilmDAO implements DatabaseAccessor {
 			length = rs.getInt("length");
 			rating = rs.getString("rating");
 			rentalDuration = rs.getInt("rental_duration");
-			rentalRate = rs.getInt("rental_rate");
-			replacementCost = rs.getInt("replacement_cost");
+			rentalRate = rs.getDouble("rental_rate");
+			replacementCost = rs.getDouble("replacement_cost");
 			List<Actor> actorList = this.findActorsByFilmId(id);
 			film = new Film(id, title, description, releaseYear, languageId, length, rating, actorList, rentalDuration,
 					rentalRate, replacementCost);
