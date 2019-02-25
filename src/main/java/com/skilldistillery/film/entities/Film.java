@@ -6,7 +6,7 @@ import com.skilldistillery.film.database.FilmDAO;
 
 
 public class Film {
-	private int id, releaseYear, languageId, length;
+	private int id, releaseYear, languageId, length, rentalDuration, rentalRate, replacementCost;
 	private String title, description, rating;
 	private List<Actor> actorList;
 
@@ -20,6 +20,10 @@ public class Film {
 		this.languageId = languageId;
 		this.length = length;
 		this.rating = rating;
+		this.actorList = null;
+		this.rentalDuration = 0;
+		this.rentalRate = 0;
+		this.replacementCost = 0;
 	}
 
 	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating,
@@ -32,6 +36,24 @@ public class Film {
 		this.length = length;
 		this.rating = rating;
 		this.actorList = actorList;
+		this.rentalDuration = 0;
+		this.rentalRate = 0;
+		this.replacementCost = 0;
+	}
+	
+	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating,
+			List<Actor> actorList, int rentalDuration, int rentalRate, int replacementCost) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageId = languageId;
+		this.length = length;
+		this.rating = rating;
+		this.actorList = actorList;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.replacementCost = replacementCost;
 	}
 
 	public String toString() {
@@ -66,6 +88,9 @@ public class Film {
 			filmInfo.append(actor);
 			i++;
 		}
+		filmInfo.append("\nRental duration: " + this.rentalDuration);
+		filmInfo.append("\nRental rate: " + this.rentalRate);
+		filmInfo.append("\nReplacement cost: $" + this.replacementCost);
 		return filmInfo.toString();
 	}
 
@@ -147,6 +172,18 @@ public class Film {
 		this.rating = rating;
 	}
 
+	public int getRentalRate() {
+		return rentalRate;
+	}
+	
+	public int getRentalDuration() {
+		return rentalDuration;
+	}
+	
+	public int getReplacementCost() {
+		return replacementCost;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

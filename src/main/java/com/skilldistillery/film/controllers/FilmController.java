@@ -72,8 +72,6 @@ public class FilmController {
 		} catch (SQLException e) {
 			result = "Error deleting film";
 		}
-//		mv.addObject("result", result);
-//		mv.setViewName("/WEB-INF/filmPage.jsp");
 		redir.addFlashAttribute("result", result);
 		redir.addFlashAttribute("filmId", filmId);
 		return "redirect:FilmModified.do";
@@ -106,7 +104,8 @@ public class FilmController {
 		String result = null;
 		Film newFilm = null;
 		try {
-			newFilm = new Film(0, film.getTitle(), film.getDescription(), film.getReleaseYear(), film.getLanguageId(), film.getLength(), film.getRating());
+			newFilm = new Film(0, film.getTitle(), film.getDescription(), film.getReleaseYear(), film.getLanguageId(),
+					film.getLength(), film.getRating());
 			Film oldFilm = filmDAO.findFilmById(film.getId());
 			result = filmDAO.modifyFilm(oldFilm, newFilm);
 		} catch (Exception e) {
