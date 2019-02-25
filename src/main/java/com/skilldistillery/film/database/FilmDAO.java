@@ -41,7 +41,6 @@ public class FilmDAO implements DatabaseAccessor {
 		String title = null, description = null, rating = null;
 		Film film = null;
 		if (rs.next()) {
-			System.out.println(rs.toString());
 			id = rs.getInt("id");
 			title = rs.getString("title");
 			description = rs.getString("description");
