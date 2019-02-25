@@ -80,7 +80,7 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
-	public String modifyFilm(Film film, RedirectAttributes redir) {
+	public String addFilm(Film film, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		String result = null;
 		Film newFilm = null;
@@ -100,23 +100,20 @@ public class FilmController {
 		return "redirect:FilmModified.do";
 	}
 
-	@RequestMapping(path = "ModifyFilm.do", params = { "filmId", "title", "description", "releaseYear", "languageId",
-			"length", "rating" }, method = RequestMethod.POST)
-	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId,
-			int length, String rating) {
+	@RequestMapping(path = "ModifyFilm.do", method = RequestMethod.POST)
+	public String modifyFilm(Film film, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		String result = null;
 		Film newFilm = null;
 		try {
-			newFilm = new Film(0, title, description, releaseYear, languageId, length, rating);
-			Film oldFilm = filmDAO.findFilmById(filmId);
+			newFilm = new Film(0, film.getTitle(), film.getDescription(), film.getReleaseYear(), film.getLanguageId(), film.getLength(), film.getRating());
+			Film oldFilm = filmDAO.findFilmById(film.getId());
 			result = filmDAO.modifyFilm(oldFilm, newFilm);
 		} catch (Exception e) {
 			result = "Error trying to modify film";
 		}
-		mv.addObject("newFilm", newFilm);
-		mv.addObject("result", result);
-		mv.setViewName("/WEB-INF/filmPage.jsp");
-		return mv;
+		redir.addFlashAttribute("result", result);
+		redir.addFlashAttribute("film", newFilm);
+		return "redirect:FilmModified.do";
 	}
 }
