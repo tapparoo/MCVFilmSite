@@ -72,8 +72,6 @@ public class FilmController {
 		} catch (SQLException e) {
 			result = "Error deleting film";
 		}
-//		mv.addObject("result", result);
-//		mv.setViewName("/WEB-INF/filmPage.jsp");
 		redir.addFlashAttribute("result", result);
 		redir.addFlashAttribute("filmId", filmId);
 		return "redirect:FilmModified.do";
@@ -101,14 +99,14 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "ModifyFilm.do", params = { "filmId", "title", "description", "releaseYear", "languageId",
-			"length", "rating" }, method = RequestMethod.POST)
+			"length", "rating", "rentalDuration, rentalRate, replacementCost" }, method = RequestMethod.POST)
 	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId,
-			int length, String rating) {
+			int length, String rating, int rentalDuration, int rentalRate, int replacementCost) {
 		ModelAndView mv = new ModelAndView();
 		String result = null;
 		Film newFilm = null;
 		try {
-			newFilm = new Film(0, title, description, releaseYear, languageId, length, rating);
+			newFilm = new Film(0, title, description, releaseYear, languageId, length, rating, null, rentalDuration, rentalRate, replacementCost);
 			Film oldFilm = filmDAO.findFilmById(filmId);
 			result = filmDAO.modifyFilm(oldFilm, newFilm);
 		} catch (Exception e) {
