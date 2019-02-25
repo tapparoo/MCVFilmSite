@@ -4,14 +4,15 @@ import java.sql.SQLException;
 import java.util.List;
 import com.skilldistillery.film.database.FilmDAO;
 
-
 public class Film {
-	private int id, releaseYear, languageId, length, rentalDuration, rentalRate, replacementCost;
+	private int id, releaseYear, languageId, length, rentalDuration;
+	private double rentalRate, replacementCost;
 	private String title, description, rating;
 	private List<Actor> actorList;
 
-	public Film() {}
-	
+	public Film() {
+	}
+
 	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating) {
 		this.id = id;
 		this.title = title;
@@ -40,9 +41,9 @@ public class Film {
 		this.rentalRate = 0;
 		this.replacementCost = 0;
 	}
-	
+
 	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating,
-			List<Actor> actorList, int rentalDuration, int rentalRate, int replacementCost) {
+			List<Actor> actorList, int rentalDuration, double rentalRate, double replacementCost) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -61,32 +62,31 @@ public class Film {
 		filmInfo.append("ID: " + this.id);
 		filmInfo.append("\nTitle: " + this.title);
 		try {
-		filmInfo.append("\nCategory: " + this.getCategory());
-		}
-		catch(Exception e) {
+			filmInfo.append("\nCategory: " + this.getCategory());
+		} catch (Exception e) {
 			filmInfo.append("\nCategory: Error retrieving category");
 		}
 		filmInfo.append("\nDescription: " + this.description);
 		filmInfo.append("\nYear: " + this.releaseYear);
-		try{
+		try {
 			filmInfo.append("\nLanguage: " + this.getLanguage());
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			filmInfo.append("\nLanguage: Error retrieving language");
 		}
 		filmInfo.append("\nLength: " + this.length + " minutes");
 		filmInfo.append("\nRating: " + this.rating);
 		int i = 0;
-		for (Actor actor : actorList) {
+		if (actorList != null) {
+			for (Actor actor : actorList) {
 
-			if (i == 0) {
-				filmInfo.append("\nCast: ");
+				if (i == 0) {
+					filmInfo.append("\nCast: ");
+				} else
+					filmInfo.append(", ");
+
+				filmInfo.append(actor);
+				i++;
 			}
-			else
-				filmInfo.append(", ");
-			
-			filmInfo.append(actor);
-			i++;
 		}
 		filmInfo.append("\nRental duration: " + this.rentalDuration);
 		filmInfo.append("\nRental rate: " + this.rentalRate);
@@ -99,15 +99,13 @@ public class Film {
 		String language = dao.getLanguageFromId(this.languageId);
 		return language;
 	}
-	
+
 	public String getCategory() throws SQLException {
 		FilmDAO dao = new FilmDAO();
 		String category = dao.getCategoryFromId(this.id);
 		return category;
 	}
-	
-	
-	
+
 	public List<Actor> getActorList() {
 		return actorList;
 	}
@@ -172,18 +170,29 @@ public class Film {
 		this.rating = rating;
 	}
 
-	public int getRentalRate() {
+	public double getRentalRate() {
 		return rentalRate;
 	}
-	
+
 	public int getRentalDuration() {
 		return rentalDuration;
 	}
-	
-	public int getReplacementCost() {
+
+	public double getReplacementCost() {
 		return replacementCost;
 	}
+	public void setRentalRate(double rate) {
+		this.rentalRate = rate;
+	}
 	
+	public void setRentalDuration(int duration) {
+		this.rentalDuration = duration;
+	}
+	
+	public void setReplacementCost(double cost) {
+		this.replacementCost = cost;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

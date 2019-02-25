@@ -62,8 +62,8 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "DeleteFilmById.do", params = "filmId", method = RequestMethod.POST)
-	public String deleteFilmById(@RequestParam("filmId") int filmId, RedirectAttributes redir) {
+	@RequestMapping(path = "DeleteFilmById.do", method = RequestMethod.POST)
+	public String deleteFilmById(@RequestParam("id") int filmId, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		String result = null;
 		try {
@@ -79,7 +79,6 @@ public class FilmController {
 
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public String addFilm(Film film, RedirectAttributes redir) {
-		ModelAndView mv = new ModelAndView();
 		String result = null;
 		Film newFilm = null;
 		try {
@@ -100,15 +99,14 @@ public class FilmController {
 
 	@RequestMapping(path = "ModifyFilm.do", method = RequestMethod.POST)
 	public String modifyFilm(Film film, RedirectAttributes redir) {
-		ModelAndView mv = new ModelAndView();
 		String result = null;
 		Film newFilm = null;
 		try {
-			newFilm = new Film(0, film.getTitle(), film.getDescription(), film.getReleaseYear(), film.getLanguageId(),
-					film.getLength(), film.getRating());
+			newFilm = new Film(film.getId(), film.getTitle(), film.getDescription(), film.getReleaseYear(), film.getLanguageId(), film.getLength(), film.getRating(), film.getActorList(), film.getRentalDuration(), film.getRentalRate(), film.getReplacementCost());
 			Film oldFilm = filmDAO.findFilmById(film.getId());
 			result = filmDAO.modifyFilm(oldFilm, newFilm);
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
 			result = "Error trying to modify film";
 		}
 		redir.addFlashAttribute("result", result);

@@ -114,15 +114,15 @@
 				<form action="ModifyFilm.do" method="POST">
 					<div class="form-group form-inline row">
 						<label for="filmID" class="control-label col-3">Film ID</label> <input
-							type="text" class="form-control form-control-sm col-1"
-							name="filmId" value="${film.id }" readonly="readonly"> <label
-							for="title" class="control-label col-3 offset-1">Title</label> <input
-							type="text" class="form-control form-control-sm col-4" name="title"
-							value="${film.title }">
+							type="text" class="form-control form-control-sm col-1" name="id"
+							value="${film.id }" readonly="readonly"> <label for="title"
+							class="control-label col-3 offset-1">Title</label> <input
+							type="text" class="form-control form-control-sm col-4"
+							name="title" value="${film.title }">
 					</div>
 					<div class="form-group form-inline row">
 						<label class="control-label col-3">Year</label> <input type="text"
-							class="form-control form-control-sm col-1" name="releaseDate"
+							class="form-control form-control-sm col-1" name="releaseYear"
 							value="${film.releaseYear }"> <label for="categories"
 							class="control-label col-3 offset-1">Category</label> <input
 							type="text" class="form-control form-control-sm col-4"
@@ -134,13 +134,17 @@
 							name="rating" value="${film.rating }"> <label
 							for="features" class="control-label col-3 offset-1">Special
 							Features</label>
-						<textarea class="form-control form-control-sm col-4" name="features"></textarea>
+						<textarea class="form-control form-control-sm col-4"
+							name="features"></textarea>
 					</div>
 					<div class="form-group form-inline row">
-						<label for="language" class="control-label col-3">Language</label>
-						<input type="text" class="form-control form-control-sm col-2"
-							name="language" value="${film.language }"><label
-							for="description" class="control-label col-3">Description</label>
+						<label for="language" class="control-label col-3">Language<br>
+							(${film.language })</label> 
+							<input type="text"
+							class="form-control form-control-sm col-1" name="languageId"
+							value="${film.languageId }">
+							<label for="description"
+							class="control-label col-3 offset-1">Description</label>
 						<textarea class="form-control form-control-sm col-4"
 							name="description">${film.description }</textarea>
 					</div>
@@ -149,23 +153,26 @@
 							type="text" class="form-control form-control-sm col-1"
 							name="length" value="${film.length }"><label for="cast"
 							class="control-label col-3 offset-1">Cast</label>
-						<textarea class="form-control form-control-sm col-4" name="cast">${film.actorList }</textarea>
+						<textarea class="form-control form-control-sm col-4" readonly="readonly">${film.actorList }</textarea>
 					</div>
 					<div class="form-group form-inline row">
 						<label for="rentalDuration" class="control-label col-3">Rental
 							Duration</label> <input type="text"
-							class="form-control form-control-sm col-1" name="rentalDuration" value="${film.rentalDuration }">
+							class="form-control form-control-sm col-1" name="rentalDuration"
+							value="${film.rentalDuration }">
 						<div class="col-4"></div>
 					</div>
 					<div class="form-group form-inline row">
 						<label for="rentalRate" class="control-label col-3">Rental
 							Rate</label> <input type="text"
-							class="form-control form-control-sm col-1" name="rentalRate" value="${film.rentalRate }">
+							class="form-control form-control-sm col-1" name="rentalRate"
+							value="${film.rentalRate }">
 					</div>
 					<div class="form-group form-inline row">
 						<label for="replacementCost" class="control-label col-3">Replacement
 							Cost</label> <input type="text"
-							class="form-control form-control-sm col-1" name="replacementCost" value="${film.replacementCost }">
+							class="form-control form-control-sm col-1" name="replacementCost"
+							value="${film.replacementCost }">
 						<!--  Save/Delete buttons-->
 						<div class="col-sm-2 offset-sm-4 col-md-2 offset-md-4">
 							<button type="submit" class="btn btn-primary">Save

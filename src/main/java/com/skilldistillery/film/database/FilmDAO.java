@@ -36,7 +36,8 @@ public class FilmDAO implements DatabaseAccessor {
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, filmId);
 		ResultSet rs = stmt.executeQuery();
-		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0, rentalRate = 0, replacementCost = 0;
+		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0, rentalRate = 0,
+				replacementCost = 0;
 		String title = null, description = null, rating = null;
 		while (rs.next()) {
 			id = rs.getInt("id");
@@ -51,13 +52,14 @@ public class FilmDAO implements DatabaseAccessor {
 			replacementCost = rs.getInt("replacement_cost");
 		}
 		List<Actor> actorList = this.findActorsByFilmId(filmId);
-		Film film = new Film(id, title, description, releaseYear, languageId, length, rating, actorList, rentalDuration, rentalRate, replacementCost);
+		Film film = new Film(id, title, description, releaseYear, languageId, length, rating, actorList, rentalDuration,
+				rentalRate, replacementCost);
 		rs.close();
 		stmt.close();
 		conn.close();
 		return film;
 	}
-	
+
 	public List<Film> findFilmByKeyword(String keyword) throws SQLException {
 		String user = "student";
 		String pass = "student";
@@ -70,7 +72,8 @@ public class FilmDAO implements DatabaseAccessor {
 		ResultSet rs = stmt.executeQuery();
 		Film film = null;
 		List<Film> filmList = new ArrayList<>();
-		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0, rentalRate = 0, replacementCost = 0;
+		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0, rentalRate = 0,
+				replacementCost = 0;
 		String title = null, description = null, rating = null;
 		while (rs.next()) {
 			id = rs.getInt("id");
@@ -84,7 +87,8 @@ public class FilmDAO implements DatabaseAccessor {
 			rentalRate = rs.getInt("rental_rate");
 			replacementCost = rs.getInt("replacement_cost");
 			List<Actor> actorList = this.findActorsByFilmId(id);
-			film = new Film(id, title, description, releaseYear, languageId, length, rating, actorList, rentalDuration, rentalRate, replacementCost);
+			film = new Film(id, title, description, releaseYear, languageId, length, rating, actorList, rentalDuration,
+					rentalRate, replacementCost);
 			filmList.add(film);
 		}
 		rs.close();
@@ -186,7 +190,7 @@ public class FilmDAO implements DatabaseAccessor {
 		int key = 0;
 		try {
 			conn = DriverManager.getConnection(url, user, pword);
-			conn.setAutoCommit(false); 
+			conn.setAutoCommit(false);
 			PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			st.setString(1, film.getTitle());
 			st.setString(2, film.getDescription());
@@ -196,8 +200,8 @@ public class FilmDAO implements DatabaseAccessor {
 			st.setString(6, film.getRating());
 			st.setInt(7, film.getId());
 			st.setInt(8, film.getRentalDuration());
-			st.setInt(9, film.getRentalRate());
-			st.setInt(10, film.getReplacementCost());
+			st.setDouble(9, film.getRentalRate());
+			st.setDouble(10, film.getReplacementCost());
 			st.executeUpdate();
 			ResultSet keys = st.getGeneratedKeys();
 			while (keys.next()) {
@@ -247,8 +251,8 @@ public class FilmDAO implements DatabaseAccessor {
 		String user = "student";
 		String pword = "student";
 		String result = null;
-		String sql = "update film set title = ?," + " description = ?," + " release_year = ?," + " language_id = ?,"
-				+ " length = ?," + " rating = ?" + " rental_duration = ?" + " rental_rate = ?" + " replacement_cost = ?" + " where id = ?;";
+		String sql = "update film set title = ?, description = ?, release_year = ?, language_id = ?, length = ?,"
+				+ " rating = ?, rental_duration = ?, rental_rate = ?, replacement_cost = ? where id = ?";
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pword);
@@ -261,13 +265,13 @@ public class FilmDAO implements DatabaseAccessor {
 			stmt.setInt(5, newFilm.getLength());
 			stmt.setString(6, newFilm.getRating());
 			stmt.setInt(7, newFilm.getRentalDuration());
-			stmt.setInt(8, newFilm.getRentalRate());
-			stmt.setInt(9, newFilm.getReplacementCost());
+			stmt.setDouble(8, newFilm.getRentalRate());
+			stmt.setDouble(9, newFilm.getReplacementCost());
 			stmt.setInt(10, oldFilm.getId());
 			stmt.executeUpdate();
 			result = "Film successfully updated";
-			System.out.println(result);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			result = "Error trying to update film";
 			if (conn != null) {
 				try {
