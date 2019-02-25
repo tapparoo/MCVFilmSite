@@ -39,7 +39,9 @@ public class FilmDAO implements DatabaseAccessor {
 		int id = 0, releaseYear = 0, languageId = 0, length = 0, rentalDuration = 0, rentalRate = 0,
 				replacementCost = 0;
 		String title = null, description = null, rating = null;
-		while (rs.next()) {
+		Film film = null;
+		if (rs.next()) {
+			System.out.println(rs.toString());
 			id = rs.getInt("id");
 			title = rs.getString("title");
 			description = rs.getString("description");
@@ -50,10 +52,10 @@ public class FilmDAO implements DatabaseAccessor {
 			rentalDuration = rs.getInt("rental_duration");
 			rentalRate = rs.getInt("rental_rate");
 			replacementCost = rs.getInt("replacement_cost");
+			List<Actor> actorList = this.findActorsByFilmId(filmId);
+			film = new Film(id, title, description, releaseYear, languageId, length, rating, actorList, rentalDuration,
+					rentalRate, replacementCost);
 		}
-		List<Actor> actorList = this.findActorsByFilmId(filmId);
-		Film film = new Film(id, title, description, releaseYear, languageId, length, rating, actorList, rentalDuration,
-				rentalRate, replacementCost);
 		rs.close();
 		stmt.close();
 		conn.close();

@@ -37,8 +37,11 @@ public class FilmController {
 		String result = null;
 		try {
 			film = filmDAO.findFilmById(filmId);
+			if(film == null) {
+				result = "No films found with ID: " + filmId;
+			}
 		} catch (SQLException e) {
-			result = "No films found";
+			e.printStackTrace();
 		}
 		mv.addObject("film", film);
 		mv.addObject("result", result);
@@ -46,15 +49,18 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "GetFilmByKeyword.do", params = "keyword", method = RequestMethod.GET)
-	public ModelAndView getFilmByKeyword(String keyword) {
+	@RequestMapping(path = "GetFilmByKeyword.do", method = RequestMethod.GET)
+	public ModelAndView getFilmByKeyword(@RequestParam("keyword") String keyword) {
 		ModelAndView mv = new ModelAndView();
 		String result = null;
 		List<Film> filmList = new ArrayList<Film>();
 		try {
 			filmList = filmDAO.findFilmByKeyword(keyword);
+			if(filmList.isEmpty()) {
+				result = "No films found with keyword: " + keyword;
+			}
 		} catch (SQLException e) {
-			result = "No films found";
+			e.printStackTrace();
 		}
 		mv.addObject("filmList", filmList);
 		mv.addObject("result", result);
