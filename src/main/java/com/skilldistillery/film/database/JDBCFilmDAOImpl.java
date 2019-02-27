@@ -1,5 +1,6 @@
 package com.skilldistillery.film.database;
 
+import java.io.ObjectInputStream.GetField;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -223,8 +224,7 @@ public class JDBCFilmDAOImpl implements DatabaseAccessor {
 	@Override
 	public Integer addFilm(Film film) {
 		Connection conn = null;
-		String sql = "INSERT INTO film (title, description, release_year, language_id, length, rating, id, rental_duration, rental_rate, replacement_cost) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		String sql = "INSERT INTO film (title, language_id) VALUES(?, ?)";
 		int key = 0; // New Film's ID (or 0 if add failed)
 
 		try {
@@ -233,15 +233,7 @@ public class JDBCFilmDAOImpl implements DatabaseAccessor {
 			PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			st.setString(1, film.getTitle());
-			st.setString(2, film.getDescription());
-			st.setInt(3, film.getReleaseYear());
-			st.setInt(4, film.getLanguageId());
-			st.setInt(5, film.getLength());
-			st.setString(6, film.getRating());
-			st.setInt(7, film.getId());
-			st.setInt(8, film.getRentalDuration());
-			st.setDouble(9, film.getRentalRate());
-			st.setDouble(10, film.getReplacementCost());
+			st.setInt(2, film.getLanguageId());
 			st.executeUpdate();
 			ResultSet keys = st.getGeneratedKeys();
 

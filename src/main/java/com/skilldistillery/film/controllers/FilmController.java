@@ -23,10 +23,11 @@ public class FilmController {
 	private DatabaseAccessor filmDAO;
 
 	@RequestMapping(path = "FilmModified.do")
-	public ModelAndView filmModified(@ModelAttribute("result") final String result) {
+	public ModelAndView filmModified(@ModelAttribute("result") final String result, @ModelAttribute("film") final Film film) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/WEB-INF/filmPage.jsp");
 		mv.addObject("result", result);
+		mv.addObject("film", film);
 		return mv;
 	}
 
@@ -93,13 +94,13 @@ public class FilmController {
 			if (film.getId() == 0) {
 				newFilm.setId(id);
 			}
+			redir.addFlashAttribute("film", filmDAO.findFilmById(id));
 			result = "Successfully added film";
 		} catch (SQLException e) {
 			e.printStackTrace();
 			result = "Error trying to modify film";
 		}
 		redir.addFlashAttribute("result", result);
-		redir.addFlashAttribute("film", newFilm);
 		return "redirect:FilmModified.do";
 	}
 
