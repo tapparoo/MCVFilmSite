@@ -13,35 +13,6 @@ public class Film {
 	public Film() {
 	}
 
-	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating) {
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.releaseYear = releaseYear;
-		this.languageId = languageId;
-		this.length = length;
-		this.rating = rating;
-		this.actorList = null;
-		this.rentalDuration = 0;
-		this.rentalRate = 0;
-		this.replacementCost = 0;
-	}
-
-	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating,
-			List<Actor> actorList) {
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.releaseYear = releaseYear;
-		this.languageId = languageId;
-		this.length = length;
-		this.rating = rating;
-		this.actorList = actorList;
-		this.rentalDuration = 0;
-		this.rentalRate = 0;
-		this.replacementCost = 0;
-	}
-
 	public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating,
 			List<Actor> actorList, int rentalDuration, double rentalRate, double replacementCost) {
 		this.id = id;

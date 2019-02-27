@@ -54,10 +54,11 @@ public class FilmController {
 	public ModelAndView getFilmByKeyword(@RequestParam("keyword") String keyword) {
 		ModelAndView mv = new ModelAndView();
 		String result = null;
-		List<Film> filmList = new ArrayList<Film>();
+		List<Film> filmList = null;
+		System.out.println(filmDAO);
 		try {
 			filmList = filmDAO.findFilmByKeyword(keyword);
-			if(filmList.isEmpty()) {
+			if(filmList == null) {
 				result = "No films found with keyword: " + keyword;
 			}
 		} catch (SQLException e) {
@@ -88,7 +89,7 @@ public class FilmController {
 		String result = null;
 		Film newFilm = null;
 		try {
-			newFilm = new Film(film.getId(), film.getTitle(), null, 0, film.getLanguageId(), 0, null);
+			newFilm = new Film(film.getId(), film.getTitle(), null, 0, film.getLanguageId(), 0, null, null, 0, 0, 0);
 			int id = filmDAO.addFilm(newFilm);
 			if (film.getId() == 0) {
 				newFilm.setId(id);

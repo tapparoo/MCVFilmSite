@@ -92,7 +92,7 @@
 					</div>
 				</div>
 				<hr>
-				<!--  List of films returned by keyword search can go right here.  
+				<!--  List of films returned by keyword search go right here.  
 					  Clicking on one will populate the form fields to the right -->
 				<div>
 					<ul class="list-group">
