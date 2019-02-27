@@ -1,7 +1,7 @@
 package com.skilldistillery.film.entities;
 
-import java.sql.SQLException;
 import java.util.List;
+
 import com.skilldistillery.film.database.JDBCFilmDAOImpl;
 
 public class Film {

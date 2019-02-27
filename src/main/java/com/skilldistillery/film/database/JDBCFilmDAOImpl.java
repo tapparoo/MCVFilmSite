@@ -1,6 +1,5 @@
 package com.skilldistillery.film.database;
 
-import java.io.ObjectInputStream.GetField;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

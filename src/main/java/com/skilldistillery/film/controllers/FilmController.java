@@ -71,7 +71,6 @@ public class FilmController {
 
 	@RequestMapping(path = "DeleteFilmById.do", method = RequestMethod.POST)
 	public String deleteFilmById(@RequestParam("id") int filmId, RedirectAttributes redir) {
-		ModelAndView mv = new ModelAndView();
 		String result = null;
 		try {
 			Film filmToDelete = filmDAO.findFilmById(filmId);
