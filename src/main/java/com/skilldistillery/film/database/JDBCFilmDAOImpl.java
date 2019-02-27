@@ -15,13 +15,13 @@ import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 @Repository
-public class FilmDAO implements DatabaseAccessor {
+public class JDBCFilmDAOImpl implements DatabaseAccessor {
 	private static final String USER = "student";
 	private static final String PASS = "student";
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 
 	// Discover JDBC Driver
-	public FilmDAO() {
+	public JDBCFilmDAOImpl() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {

@@ -2,7 +2,7 @@ package com.skilldistillery.film.entities;
 
 import java.sql.SQLException;
 import java.util.List;
-import com.skilldistillery.film.database.FilmDAO;
+import com.skilldistillery.film.database.JDBCFilmDAOImpl;
 
 public class Film {
 	private int id, releaseYear, languageId, length, rentalDuration;
@@ -95,13 +95,13 @@ public class Film {
 	}
 
 	public String getLanguage() throws SQLException {
-		FilmDAO dao = new FilmDAO();
+		JDBCFilmDAOImpl dao = new JDBCFilmDAOImpl();
 		String language = dao.getLanguageFromId(this.languageId);
 		return language;
 	}
 
 	public String getCategory() throws SQLException {
-		FilmDAO dao = new FilmDAO();
+		JDBCFilmDAOImpl dao = new JDBCFilmDAOImpl();
 		String category = dao.getCategoryFromId(this.id);
 		return category;
 	}
