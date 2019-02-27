@@ -161,22 +161,32 @@ public class JDBCFilmDAOImpl implements DatabaseAccessor {
 		return actorList;
 	}
 
-	public String getCategoryFromId(int filmId) throws SQLException {
+	public String getCategoryFromId(int filmId) {
 		String category = null;
+		Connection conn = null;
 
-		Connection conn = DriverManager.getConnection(URL, USER, PASS);
-		String sql = "SELECT name FROM category JOIN film_category ON film_category.category_id = category.id JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, filmId);
-		ResultSet rs = stmt.executeQuery();
+		try {
+			conn = DriverManager.getConnection(URL, USER, PASS);
+			String sql = "SELECT name FROM category JOIN film_category ON film_category.category_id = category.id JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet rs = stmt.executeQuery();
 
-		if (rs.next()) {
-			category = rs.getString("name");
+			if (rs.next()) {
+				category = rs.getString("name");
+			}
+			
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
-		rs.close();
-		stmt.close();
-		conn.close();
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		return category;
 	}

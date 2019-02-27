@@ -94,13 +94,13 @@ public class Film {
 		return filmInfo.toString();
 	}
 
-	public String getLanguage() throws SQLException {
+	public String getLanguage() {
 		JDBCFilmDAOImpl dao = new JDBCFilmDAOImpl();
 		String language = dao.getLanguageFromId(this.languageId);
 		return language;
 	}
 
-	public String getCategory() throws SQLException {
+	public String getCategory() {
 		JDBCFilmDAOImpl dao = new JDBCFilmDAOImpl();
 		String category = dao.getCategoryFromId(this.id);
 		return category;
