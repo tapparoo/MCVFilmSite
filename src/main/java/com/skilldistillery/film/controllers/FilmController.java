@@ -55,7 +55,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		String result = null;
 		List<Film> filmList = null;
-		System.out.println(filmDAO);
+
 		try {
 			filmList = filmDAO.findFilmByKeyword(keyword);
 			if(filmList == null) {
