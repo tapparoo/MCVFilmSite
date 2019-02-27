@@ -2,29 +2,10 @@ package com.skilldistillery.film.entities;
 
 import java.util.List;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
 import com.skilldistillery.film.database.JDBCFilmDAOImpl;
 
 public class Film {
-	@NotNull
-	@Min(1)
-	private int id;
-	@Min(1800)
-	@Max(2025)
-	private int releaseYear;
-	@Min(1)
-	@Max(6)
-	private int languageId;
-	@Min(0)
-	@Max(999)
-	private int length; 
-	@Min(1)
-	@Max(999)
-	private int rentalDuration;
-	@Min(0)
+	private int id, releaseYear, languageId, length, rentalDuration;
 	private double rentalRate, replacementCost;
 	private String title, description, rating;
 	private List<Actor> actorList;
