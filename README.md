@@ -9,6 +9,11 @@ Users utilize the app's GUI to search through a pre-existing sample database tha
 contains 1000 films.  Searches are made by ID or keyword and users will be shown
 details of the selected movie.
 
+Users can now also:
+- Add a new film to the database
+- Delete a new film from the database
+- Save changes to any film
+
 ### Topics/Technologies
 - Spring MVC
   - JavaServer Pages (JSPs), Java Standard Tag Library (JSTL), Post/Redirect/Get (PRG)
