@@ -1,7 +1,6 @@
 package com.skilldistillery.film.controllers;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,14 +72,28 @@ public class FilmController {
 	@RequestMapping(path = "DeleteFilmById.do", method = RequestMethod.POST)
 	public String deleteFilmById(@RequestParam("id") int filmId, RedirectAttributes redir) {
 		String result = null;
+		if(filmId == 0) {
+			result = "Film already deleted";
+			redir.addFlashAttribute("result", result);
+			return "redirect:FilmModified.do";
+		}
 		try {
 			Film filmToDelete = filmDAO.findFilmById(filmId);
 			result = filmDAO.deleteFilm(filmToDelete);
 		} catch (SQLException e) {
-			result = "Error deleting film";
+			e.printStackTrace();
+		}
+		
+		// If delete failed (probably from SQL dependencies), add back to form
+		try {
+			Film film = filmDAO.findFilmById(filmId);
+			if(film != null) {
+				redir.addFlashAttribute("film", film);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		redir.addFlashAttribute("result", result);
-		redir.addFlashAttribute("filmId", filmId);
 		return "redirect:FilmModified.do";
 	}
 
@@ -107,6 +120,11 @@ public class FilmController {
 	@RequestMapping(path = "ModifyFilm.do", method = RequestMethod.POST)
 	public String modifyFilm(Film film, RedirectAttributes redir) {
 		String result = null;
+		if(film.getId() == 0) {
+			result = "No film exists to edit";
+			redir.addFlashAttribute("result", result);
+			return "redirect:FilmModified.do";
+		}
 		Film newFilm = null;
 		try {
 			newFilm = new Film(film.getId(), film.getTitle(), film.getDescription(), film.getReleaseYear(), film.getLanguageId(), film.getLength(), film.getRating(), film.getActorList(), film.getRentalDuration(), film.getRentalRate(), film.getReplacementCost());

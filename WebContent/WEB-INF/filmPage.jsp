@@ -111,84 +111,85 @@
 			<div class="col-sm-8 right">
 				<h3>Film Data</h3>
 				<hr>
-				<form action="ModifyFilm.do" method="POST">
-					<div class="form-group form-inline row">
-						<label for="filmID" class="control-label col-3">Film ID</label> <input
-							type="text" class="form-control form-control-sm col-1" name="id"
-							value="${film.id }" readonly="readonly"> <label for="title"
-							class="control-label col-3 offset-1">Title</label> <input
-							type="text" class="form-control form-control-sm col-4"
-							name="title" value="${film.title }">
-					</div>
-					<div class="form-group form-inline row">
-						<label class="control-label col-3">Year</label> <input type="text"
-							class="form-control form-control-sm col-1" name="releaseYear"
-							value="${film.releaseYear }"> <label for="categories"
-							class="control-label col-3 offset-1">Category</label> <input
-							type="text" class="form-control form-control-sm col-4"
-							name="categories" value="${film.category }">
-					</div>
-					<div class="form-group form-inline row">
-						<label for="rating" class="control-label col-3">Rating</label> <input
-							type="text" class="form-control form-control-sm col-1"
-							name="rating" value="${film.rating }"> <label
-							for="features" class="control-label col-3 offset-1">Special
-							Features</label>
-						<textarea class="form-control form-control-sm col-4"
-							name="features"></textarea>
-					</div>
-					<div class="form-group form-inline row">
-						<label for="language" class="control-label col-3">Language<br>
-							(${film.language })</label> 
-							<input type="text"
-							class="form-control form-control-sm col-1" name="languageId"
-							value="${film.languageId }">
-							<label for="description"
-							class="control-label col-3 offset-1">Description</label>
-						<textarea class="form-control form-control-sm col-4"
-							name="description">${film.description }</textarea>
-					</div>
-					<div class="form-group form-inline row">
-						<label for="length" class="control-label col-3">Length</label> <input
-							type="text" class="form-control form-control-sm col-1"
-							name="length" value="${film.length }"><label for="cast"
-							class="control-label col-3 offset-1">Cast</label>
-						<textarea class="form-control form-control-sm col-4" readonly="readonly">${film.actorList }</textarea>
-					</div>
-					<div class="form-group form-inline row">
-						<label for="rentalDuration" class="control-label col-3">Rental
-							Duration</label> <input type="text"
-							class="form-control form-control-sm col-1" name="rentalDuration"
-							value="${film.rentalDuration }">
-						<div class="col-4"></div>
-					</div>
-					<div class="form-group form-inline row">
-						<label for="rentalRate" class="control-label col-3">Rental
-							Rate</label> <input type="text"
-							class="form-control form-control-sm col-1" name="rentalRate"
-							value="${film.rentalRate }">
-					</div>
-					<div class="form-group form-inline row">
-						<label for="replacementCost" class="control-label col-3">Replacement
-							Cost</label> <input type="text"
-							class="form-control form-control-sm col-1" name="replacementCost"
-							value="${film.replacementCost }">
-						<!--  Save/Delete buttons-->
-						<div class="col-sm-2 offset-sm-4 col-md-2 offset-md-4">
-							<button type="submit" class="btn btn-primary">Save
-								Changes</button>
+				<c:if test="${not empty film.id}">
+					<form action="ModifyFilm.do" method="POST">
+						<div class="form-group form-inline row">
+							<label for="filmID" class="control-label col-3">Film ID</label> <input
+								type="text" class="form-control form-control-sm col-1" name="id"
+								value="${film.id }" readonly="readonly"> <label
+								for="title" class="control-label col-3 offset-1">Title</label> <input
+								type="text" class="form-control form-control-sm col-4"
+								name="title" value="${film.title }">
 						</div>
-						<div class="col-sm-3 col-md-2">
-							<button type="submit" class="btn btn-danger" formmethod="POST"
-								formaction="DeleteFilmById.do">Delete Film</button>
+						<div class="form-group form-inline row">
+							<label class="control-label col-3">Year</label> <input
+								type="text" class="form-control form-control-sm col-1"
+								name="releaseYear" value="${film.releaseYear }"> <label
+								for="categories" class="control-label col-3 offset-1">Category</label>
+							<input type="text" class="form-control form-control-sm col-4"
+								name="categories" value="${film.category }">
 						</div>
-					</div>
-					<div class='row float-right'>
-						<p style="color: red; font-weight: bold;">
-							<c:out value="${result}" />
-						</p>
-					</div>
-				</form>
+						<div class="form-group form-inline row">
+							<label for="rating" class="control-label col-3">Rating</label> <input
+								type="text" class="form-control form-control-sm col-1"
+								name="rating" value="${film.rating }"> <label
+								for="features" class="control-label col-3 offset-1">Special
+								Features</label>
+							<textarea class="form-control form-control-sm col-4"
+								name="features"></textarea>
+						</div>
+						<div class="form-group form-inline row">
+							<label for="language" class="control-label col-3">Language<br>
+								(${film.language })
+							</label> <input type="text" class="form-control form-control-sm col-1"
+								name="languageId" value="${film.languageId }"> <label
+								for="description" class="control-label col-3 offset-1">Description</label>
+							<textarea class="form-control form-control-sm col-4"
+								name="description">${film.description }</textarea>
+						</div>
+						<div class="form-group form-inline row">
+							<label for="length" class="control-label col-3">Length</label> <input
+								type="text" class="form-control form-control-sm col-1"
+								name="length" value="${film.length }"><label for="cast"
+								class="control-label col-3 offset-1">Cast</label>
+							<textarea class="form-control form-control-sm col-4"
+								readonly="readonly">${film.actorList }</textarea>
+						</div>
+						<div class="form-group form-inline row">
+							<label for="rentalDuration" class="control-label col-3">Rental
+								Duration</label> <input type="text"
+								class="form-control form-control-sm col-1" name="rentalDuration"
+								value="${film.rentalDuration }">
+							<div class="col-4"></div>
+						</div>
+						<div class="form-group form-inline row">
+							<label for="rentalRate" class="control-label col-3">Rental
+								Rate</label> <input type="text"
+								class="form-control form-control-sm col-1" name="rentalRate"
+								value="${film.rentalRate }">
+						</div>
+						<div class="form-group form-inline row">
+							<label for="replacementCost" class="control-label col-3">Replacement
+								Cost</label> <input type="text"
+								class="form-control form-control-sm col-1"
+								name="replacementCost" value="${film.replacementCost }">
+							<!--  Save/Delete buttons-->
+							<div class="col-sm-2 offset-sm-4 col-md-2 offset-md-4">
+								<button type="submit" class="btn btn-primary">Save
+									Changes</button>
+							</div>
+							<div class="col-sm-3 col-md-2">
+								<button type="submit" class="btn btn-danger" formmethod="POST"
+									formaction="DeleteFilmById.do">Delete Film</button>
+							</div>
+						</div>
+						<div class='row float-right'>
+							<p style="color: red; font-weight: bold;">
+								<c:out value="${result}" />
+							</p>
+						</div>
+					</form>
+				</c:if>
 			</div>
 		</div>
 	</div>
